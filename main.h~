@@ -1,0 +1,9 @@
+/*!
+ \file main.h
+ \brief Integer function calculate your birthday
+ \return Return integer result - your birhday 
+ */
+int func(int current_year, int year_of_birth) {
+    int result = current_year + (10 - ((current_year - year_of_birth) % 10));
+    return result;
+}
