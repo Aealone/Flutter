@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/home/components/body.dart';
+// import 'package:shop_app/http_post.dart';
 
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:async';
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -117,57 +118,62 @@ class _MyCheckBoxState extends State<MyCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      height: 200,
-          child: ListView(
-          children: values.keys.map((String key) {
-            return new LabeledCheckbox(
-              label: key,
-              value: values[key],
-              onChanged: (bool value) {
-                setState(() {
-                  values[key] = value;
-                });
-              },
-            );
-          }).toList(),
-      ),
+    return  Column(
+      children: [
+        SizedBox(
+          height: 200,
+              child: ListView(
+              children: values.keys.map((String key) {
+                return new LabeledCheckbox(
+                  label: key,
+                  value: values[key],
+                  onChanged: (bool value) {
+                    setState(() {
+                      values[key] = value;
+                    });
+                  },
+                );
+              }).toList(),
+          ),
+        ),
+        // MyR(),
+      ],
     );
   }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Future<Album> fetchAlbum() async {
-  final response =
-      await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums/1'));
+// Future<Album> fetchAlbum() async {
+//   final response =
+//       await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums/1'));
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
+//   if (response.statusCode == 200) {
+//     // If the server did return a 200 OK response,
+//     // then parse the JSON.
+//     return Album.fromJson(jsonDecode(response.body));
+//   } else {
+//     // If the server did not return a 200 OK response,
+//     // then throw an exception.
+//     throw Exception('Failed to load album');
+//   }
+// }
 
-class Album {
-  final userId;
-  final id;
-  final title;
+// class Album {
+//   final userId;
+//   final id;
+//   final title;
 
-  Album({this.userId, this.id, this.title});
+//   Album({this.userId, this.id, this.title});
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
+//   factory Album.fromJson(Map<String, dynamic> json) {
+//     return Album(
+//       userId: json['userId'],
+//       id: json['id'],
+//       title: json['title'],
+//     );
+//   }
+// }
 //  Center(
 //   child: FutureBuilder<Album>(
 //     future: futureAlbum,

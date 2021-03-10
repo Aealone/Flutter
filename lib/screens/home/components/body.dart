@@ -4,7 +4,8 @@ import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 
 import 'categorries.dart';
-import 'item_card.dart';
+// import 'item_card.dart';
+import 'package:shop_app/posts.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -23,27 +24,29 @@ class Body extends StatelessWidget {
           ),
         ),
         Categories(),
+        // PostsPage(),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-            child: GridView.builder(
-                itemCount: products.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: kDefaultPaddin,
-                  crossAxisSpacing: kDefaultPaddin,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => ItemCard(
-                      product: products[index],
-                      press: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailsScreen(
-                              product: products[index],
-                            ),
-                          )),
-                    )),
+            child: PostsPage(),
+            // child: GridView.builder(
+            //     itemCount: products.length,
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //       crossAxisCount: 2,
+            //       mainAxisSpacing: kDefaultPaddin,
+            //       crossAxisSpacing: kDefaultPaddin,
+            //       childAspectRatio: 0.75,
+            //     ),
+            //     itemBuilder: (context, index) => ItemCard(
+            //           product: products[index],
+            //           press: () => Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => DetailsScreen(
+            //                   product: products[index],
+            //                 ),
+            //               )),
+            //         )),
           ),
         ),
       ],
