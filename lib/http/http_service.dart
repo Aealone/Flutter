@@ -8,7 +8,7 @@ class HttpService {
 
   Future<List<Post>> getPosts() async {
     
-    http.Response res = await http.get(postsURL);
+    http.Response res = await http.get(postsURL); 
     // final otvet = res.statusCode;
     if (res.statusCode == 200) {
 

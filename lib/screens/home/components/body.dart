@@ -1,55 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
+// import 'package:shop_app/models/Product.dart';
+// import 'package:shop_app/screens/details/details_screen.dart';
 
-import 'categorries.dart';
+// import 'categorries.dart';
 // import 'item_card.dart';
 import 'package:shop_app/posts.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          child: Text(
-            "Women",
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-        ),
-        Categories(),
-        // PostsPage(),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-            child: PostsPage(),
-            // child: GridView.builder(
-            //     itemCount: products.length,
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 2,
-            //       mainAxisSpacing: kDefaultPaddin,
-            //       crossAxisSpacing: kDefaultPaddin,
-            //       childAspectRatio: 0.75,
-            //     ),
-            //     itemBuilder: (context, index) => ItemCard(
-            //           product: products[index],
-            //           press: () => Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => DetailsScreen(
-            //                   product: products[index],
-            //                 ),
-            //               )),
-            //         )),
-          ),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding/2),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: 210,
+              color: Colors.black12,
+              child: Align(
+                alignment: Alignment(0, -0.2),
+                child: Text(
+                  "Кроссовки и кеды",
+                  style: TextStyle(
+                    fontSize: 45.0,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
+            ),
+          // SizedBox(height:20),
+          // Categories(),
+          PostsPage(),
+              // child: GridView.builder(
+              //     itemCount: products.length,
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       mainAxisSpacing: kDefaultPaddin,
+              //       crossAxisSpacing: kDefaultPaddin,
+              //       childAspectRatio: 0.75,
+              //     ),
+              //     itemBuilder: (context, index) => ItemCard(
+              //           product: products[index],
+              //           press: () => Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                 builder: (context) => DetailsScreen(
+              //                   product: products[index],
+              //                 ),
+              //               )),
+              //         )),
+
+        ],
+      ),
     );
   }
 }

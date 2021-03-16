@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:shop_app/constants.dart';
+// import 'package:flutter_svg/svg.dart';
+// import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 // import 'package:shop_app/http_post.dart';
 
@@ -15,57 +15,76 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       drawer: buildDrawer(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-           _scaffoldKey.currentState.openDrawer();
-        },
-        child: Text("Фильтр"),
-        backgroundColor: Colors.green,
+      floatingActionButton: Container(
+        child: Align(
+          alignment: Alignment(-0.8, -0.5),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                _scaffoldKey.currentState.openDrawer();
+              },
+              icon: Icon(Icons.settings_applications),
+              label: Text("Фильтр"),
+              backgroundColor: Colors.red,
+            ),
+        ),
       ),
-      appBar: buildAppBar(),
+      // appBar: buildAppBar(),
       body: Body(),
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/back.svg"),
-        onPressed: () {},
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/search.svg",
-            // By default our  icon color is white
-            color: kTextColor,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/cart.svg",
-            // By default our  icon color is white
-            color: kTextColor,
-          ),
-          onPressed: () {},
-        ),
-        SizedBox(width: kDefaultPaddin / 2)
-      ],
-    );
-  }
+  // AppBar buildAppBar() {
+  //   return AppBar(
+  //     backgroundColor: Colors.white,
+  //     elevation: 0,
+  //     leading: IconButton(
+  //       icon: SvgPicture.asset("assets/icons/back.svg"),
+  //       onPressed: () {},
+  //     ),
+  //     actions: <Widget>[
+  //       IconButton(
+  //         icon: SvgPicture.asset(
+  //           "assets/icons/search.svg",
+  //           // By default our  icon color is white
+  //           color: kTextColor,
+  //         ),
+  //         onPressed: () {},
+  //       ),
+  //       IconButton(
+  //         icon: SvgPicture.asset(
+  //           "assets/icons/cart.svg",
+  //           // By default our  icon color is white
+  //           color: kTextColor,
+  //         ),
+  //         onPressed: () {},
+  //       ),
+  //       SizedBox(width: kDefaultPaddin / 2)
+  //     ],
+  //   );
+  // }
 }
 
   Drawer buildDrawer() {
     return Drawer(
-      child: Center(
-        child: ExpansionTile(
-          title: Text("Размеры"),
-          children: [
-            MyCheckBox()
+      child: Padding(
+        padding: const EdgeInsets.only(top: 45.0),
+        child: Column(
+          children:[
+            Text("Пол"),
+
+            ExpansionTile(
+            title: Text("Бренд"),
+            children: [
+              BrandsCheckBoxList()
+            ],
+            ),
+
+            ExpansionTile(
+            title: Text("Размер"),
+            children: [
+              SizesCheckBoxList()
+            ],
+            ),
           ],
         ),
       ),
@@ -104,12 +123,49 @@ class LabeledCheckbox extends StatelessWidget {
   }
 }
 
-class MyCheckBox extends StatefulWidget {
+class BrandsCheckBoxList extends StatefulWidget {
   @override
-  _MyCheckBoxState createState() => _MyCheckBoxState();
+  _BrandsCheckBoxListState createState() => _BrandsCheckBoxListState();
 }
 
-class _MyCheckBoxState extends State<MyCheckBox> {
+class _BrandsCheckBoxListState extends State<BrandsCheckBoxList> {
+
+  Map<String, bool> values = {
+  'Adidas': true,
+  'Nike': false,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+      children: [
+        SizedBox(
+          height: 300,
+              child: ListView(
+              children: values.keys.map((String key) {
+                return new LabeledCheckbox(
+                  label: key,
+                  value: values[key],
+                  onChanged: (bool value) {
+                    setState(() {
+                      values[key] = value;
+                    });
+                  },
+                );
+              }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class SizesCheckBoxList extends StatefulWidget {
+  @override
+  _SizesCheckBoxListState createState() => _SizesCheckBoxListState();
+}
+
+class _SizesCheckBoxListState extends State<SizesCheckBoxList> {
 
   Map<String, bool> values = {
   '43': true,
@@ -136,59 +192,10 @@ class _MyCheckBoxState extends State<MyCheckBox> {
               }).toList(),
           ),
         ),
-        // MyR(),
       ],
     );
   }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Future<Album> fetchAlbum() async {
-//   final response =
-//       await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums/1'));
-
-//   if (response.statusCode == 200) {
-//     // If the server did return a 200 OK response,
-//     // then parse the JSON.
-//     return Album.fromJson(jsonDecode(response.body));
-//   } else {
-//     // If the server did not return a 200 OK response,
-//     // then throw an exception.
-//     throw Exception('Failed to load album');
-//   }
-// }
-
-// class Album {
-//   final userId;
-//   final id;
-//   final title;
-
-//   Album({this.userId, this.id, this.title});
-
-//   factory Album.fromJson(Map<String, dynamic> json) {
-//     return Album(
-//       userId: json['userId'],
-//       id: json['id'],
-//       title: json['title'],
-//     );
-//   }
-// }
-//  Center(
-//   child: FutureBuilder<Album>(
-//     future: futureAlbum,
-//     builder: (context, snapshot) {
-//       if (snapshot.hasData) {
-//         // print(Album.fromJson(jsonDecode(response.body));
-//         return Text(snapshot.data.title);
-//       } else if (snapshot.hasError) {
-//         return Text("${snapshot.error}");
-//       }
-
-//       // By default, show a loading spinner.
-//       return CircularProgressIndicator();
-//     },
-//   ),
-// ),
 
 

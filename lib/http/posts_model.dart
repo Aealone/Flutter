@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class Post {
   final List sizes;
-  // final gallery;
+  final List image;
   final String category;
   final String brand;
   final String color;
@@ -13,7 +13,7 @@ class Post {
 
   Post({
     @required this.sizes,
-    // @required this.gallery,
+    @required this.image,
     @required this.category,
     @required this.brand,
     @required this.color,
@@ -26,7 +26,7 @@ class Post {
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       sizes: json['sizes'] as List,
-      // gallery: json['gallery'],
+      image: json['gallery'] as List,
       category: json['category'] as String,
       brand: json['brand'] as String,
       color: json['color'] as String,
