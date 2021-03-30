@@ -1,6 +1,7 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 // import 'package:shop_app/constants.dart';
-// import 'package:shop_app/models/Product.dart';
+import '../../../http/request_model.dart';
+
 
 // import 'add_to_cart.dart';
 // import 'color_and_size.dart';
@@ -8,54 +9,78 @@
 // import 'description.dart';
 // import 'product_title_with_image.dart';
 
-// class Body extends StatelessWidget {
-//   final Product product;
+class Body extends StatelessWidget {
+  final ProductInfo product;
 
-//   const Body({Key key, this.product}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     // It provide us total height and width
-//     Size size = MediaQuery.of(context).size;
-//     return SingleChildScrollView(
-//       child: Column(
-//         children: <Widget>[
-//           SizedBox(
-//             height: size.height,
-//             child: Stack(
-//               children: <Widget>[
-//                 Container(
-//                   margin: EdgeInsets.only(top: size.height * 0.3),
-//                   padding: EdgeInsets.only(
-//                     top: size.height * 0.12,
-//                     left: kDefaultPaddin,
-//                     right: kDefaultPaddin,
-//                   ),
-//                   // height: 500,
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     borderRadius: BorderRadius.only(
-//                       topLeft: Radius.circular(24),
-//                       topRight: Radius.circular(24),
-//                     ),
-//                   ),
-//                   child: Column(
-//                     children: <Widget>[
-//                       ColorAndSize(product: product),
-//                       SizedBox(height: kDefaultPaddin / 2),
-//                       Description(product: product),
-//                       SizedBox(height: kDefaultPaddin / 2),
-//                       CounterWithFavBtn(),
-//                       SizedBox(height: kDefaultPaddin / 2),
-//                       AddToCart(product: product)
-//                     ],
-//                   ),
-//                 ),
-//                 ProductTitleWithImage(product: product)
-//               ],
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+  const Body({Key key, this.product}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final image = product.image.toString();
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            // height: size.height*0.8,
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Image.network("http://" + image.substring(1, image.length-1), fit: BoxFit.fitWidth)),
+          ),
+
+          // category 
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(product.category),
+            ),
+          ),
+
+          // brand
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(product.brand),
+            ),
+          ),
+
+          // color
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(product.color),
+            ),
+          ),
+
+          // oldprice
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(product.oldPrice.toString()),
+            ),
+          ),
+
+          // newprice
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(product.newPrice.toString()),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

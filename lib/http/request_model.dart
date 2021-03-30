@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-class Post {
+class ProductInfo {
+  final String id;
   final List sizes;
   final List image;
   final String category;
@@ -9,9 +10,11 @@ class Post {
   final int oldPrice;
   final int newPrice;
   final String mainLink;
+  
 
 
-  Post({
+  ProductInfo({
+    @required this.id,
     @required this.sizes,
     @required this.image,
     @required this.category,
@@ -23,8 +26,9 @@ class Post {
   
   });
 
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
+  factory ProductInfo.fromJson(Map<String, dynamic> json) {
+    return ProductInfo(
+      id: json['_id'] as String,
       sizes: json['sizes'] as List,
       image: json['gallery'] as List,
       category: json['category'] as String,

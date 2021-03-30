@@ -5,7 +5,8 @@ import 'package:shop_app/constants.dart';
 
 // import 'categorries.dart';
 // import 'item_card.dart';
-import 'package:shop_app/posts.dart';
+import 'package:shop_app/drawer/drawer_screen.dart';
+import 'package:shop_app/screens/home/components/products_grid.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -31,7 +32,7 @@ class Body extends StatelessWidget {
             ),
           // SizedBox(height:20),
           // Categories(),
-          PostsPage(),
+          ProductsGrid(key: futureGlobalKey), //key: futureGlobalKey
               // child: GridView.builder(
               //     itemCount: products.length,
               //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

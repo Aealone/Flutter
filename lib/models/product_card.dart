@@ -1,33 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import '../http/request_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final String image, category, brand, color, mainLink;
-  final int oldPrice, newPrice;
-  final String sizes;
+  // final String id, image, category, brand, color, mainLink;
+  // final int oldPrice, newPrice;
+  // final String sizes;
+  final ProductInfo product;
+  final Function press;
 
-  ProductCard({
-    @required this.sizes,
-    this.image,
-    this.category,
-    @required this.brand,
-    this.color,
-    @required this.oldPrice,
-    @required this.newPrice,
-    this.mainLink,
-  });
+  const ProductCard({
+    Key key,
+    @required this.press,
+    @required this.product,
+    // @required this.id,
+    // @required this.sizes,
+    // @required this.image,
+    // @required this.category,
+    // @required this.brand,
+    // @required this.color,
+    // @required this.oldPrice,
+    // @required this.newPrice,
+    // @required this.mainLink,
+  }) : super(key: key);
 
   @override
+  
   Widget build(BuildContext context) {
+    final image = product.image.toString();
+    final sizes = product.sizes.toString();
     return Container(
       // height: 400,
       color: Colors.black54,
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(height:245, child: Image.network(image, fit: BoxFit.contain)),
+          Container(
+            height:245, 
+            child: InkWell(
+              child: Image.network("http://" + image.substring(1, image.length-1), fit: BoxFit.contain),
+                onTap: press,
+            ),
+          ),
           Text(
-            brand,
+            product.brand,
             style: TextStyle(
               fontSize: brandFontSize,
               fontWeight: FontWeight.w400,
@@ -39,7 +55,7 @@ class ProductCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  oldPrice.toString(),
+                  product.oldPrice.toString(),
                   style: TextStyle(
                     fontSize: oldPriceFontSize,
                     fontWeight: FontWeight.w400,
@@ -50,7 +66,7 @@ class ProductCard extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Text(
-                  newPrice.toString(),
+                  product.newPrice.toString(),
                   style: TextStyle(
                     fontSize: newPriceFontSize,
                     fontWeight: FontWeight.w400,
