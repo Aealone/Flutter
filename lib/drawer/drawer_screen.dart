@@ -16,8 +16,8 @@ import 'package:shop_app/screens/home/components/products_grid.dart';
 
   Drawer buildDrawer() {
 
-    final name1Controller = TextEditingController();
-    final name2Controller = TextEditingController();
+    final minPriceController = TextEditingController();
+    final maxPriceController = TextEditingController();
     
     return Drawer(
       child: Padding(
@@ -50,7 +50,7 @@ import 'package:shop_app/screens/home/components/products_grid.dart';
                   // minPrice
                   Expanded(
                     child: TextField(
-                      controller: name1Controller,
+                      controller: minPriceController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'min'
@@ -63,7 +63,7 @@ import 'package:shop_app/screens/home/components/products_grid.dart';
                   // maxPrice
                   Expanded(
                     child: TextField(
-                      controller: name2Controller,
+                      controller: maxPriceController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'max'
@@ -75,7 +75,9 @@ import 'package:shop_app/screens/home/components/products_grid.dart';
             ),
             ElevatedButton(
               onPressed: () {
-                futureGlobalKey.currentState.updateGrid(HttpService().getPosts(mylist, "1000", "3000"));
+                final String brandsStringForRequest = brandsListForRequest.toString().substring(1, brandsListForRequest.toString().length-1).replaceAll(' ', '');
+                // final String sizesStringForRequest = sizesListForRequest.toString().substring(1, sizesListForRequest.toString().length-1).replaceAll(' ', '');
+                futureGlobalKey.currentState.updateGrid(HttpService().getPosts(brandsStringForRequest, minPriceController.text, maxPriceController.text));
               },
               child: Text("Применить"))
             

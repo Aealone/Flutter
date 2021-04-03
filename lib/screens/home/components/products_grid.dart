@@ -21,7 +21,7 @@ class ProductsGridState extends State<ProductsGrid> {
   Future<List<ProductInfo>> myfuture;
 
   void initState() {
-    myfuture = HttpService().getPosts([], "1000", "3000");
+    myfuture = HttpService().getPosts("", "", "");
     super.initState();
   }
 
@@ -69,8 +69,8 @@ class Grid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return DraggableScrollableSheet(
-      initialChildSize: 0.7,
-      minChildSize: 0.7,
+      initialChildSize: 0.65,
+      minChildSize: 0.65,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           color: Colors.white,

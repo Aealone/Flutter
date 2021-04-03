@@ -3,7 +3,7 @@ import 'package:shop_app/drawer/components/drawer_info.dart';
 import 'package:shop_app/drawer/components/checkboxes/checkbox_model.dart';
 // import 'package:shop_app/http/http_service.dart';
 
-final List<String> mylist = [];
+final List<String> brandsListForRequest = [];
 
 class BrandsCheckBoxList extends StatefulWidget {
   @override
@@ -28,7 +28,11 @@ class _BrandsCheckBoxListState extends State<BrandsCheckBoxList> {
                   onChanged: (bool value) {
                     setState(() {
                       // await HttpService().getPosts("adidas", "1000", "3000");
-                      mylist.add(key);
+                      if (value == true) {
+                        brandsListForRequest.add(key);
+                      } else {
+                        brandsListForRequest.remove(key);
+                      }
                       brands[key] = value;
                     });
                   },

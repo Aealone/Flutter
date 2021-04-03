@@ -6,7 +6,7 @@ import 'request_model.dart';
 class HttpService {
   final String mainURL = "http://localhost:5000/?brand=PUMA&sizeMin=44&sizeMax=45&priceMin=1000&priceMax=3000";
 
-  Future<List<ProductInfo>> getPosts(List<String> brands, String priceMin, String priceMax) async {
+  Future<List<ProductInfo>> getPosts(String brands, String priceMin, String priceMax) async {
     
     http.Response res = await http.get("http://localhost:5000/?brand=$brands&priceMin=$priceMin&priceMax=$priceMax"); 
     if (res.statusCode == 200) {
