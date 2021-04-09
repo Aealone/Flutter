@@ -11,8 +11,6 @@ class ProductInfo {
   final int newPrice;
   final String mainLink;
   
-
-
   ProductInfo({
     @required this.id,
     @required this.sizes,

@@ -21,10 +21,10 @@ class _SizesCheckBoxListState extends State<SizesCheckBoxList> {
         SizedBox(
           height: 200,
               child: ListView(
-              children: sizes.keys.map((String key) {
+              children: sizesUniq.keys.map((String key) {
                 return new LabeledCheckbox(
                   label: key,
-                  values: sizes[key],
+                  values: sizesUniq[key],
                   onChanged: (bool value) {
                     setState(() {
                       if (value == true) {
@@ -32,7 +32,7 @@ class _SizesCheckBoxListState extends State<SizesCheckBoxList> {
                       } else {
                         sizesListForRequest.remove(key);
                       }
-                      sizes[key] = value;
+                      sizesUniq[key] = value;
                     });
                   },
                 );
