@@ -8,7 +8,7 @@ import 'package:shop_app/drawer/components/radio.dart';
 import 'package:shop_app/screens/home/components/products_grid.dart';
 
 
-final GlobalKey<ProductsGridState> futureGlobalKey = new GlobalKey<ProductsGridState>();
+GlobalKey<ProductsGridState> productsGridGlobalKey = GlobalKey<ProductsGridState>();
 
 //  void _doFilter() {
 //     futureGlobalKey.currentState.updateGrid(HttpService().getPosts("adidas", "1000", "3000"));
@@ -75,10 +75,9 @@ final GlobalKey<ProductsGridState> futureGlobalKey = new GlobalKey<ProductsGridS
             ),
             ElevatedButton(
               onPressed: () {
-                // если бренд имеет нескольк ослов в названии то пробелы удаляются и ерунда выходит
-                final String brandsStringForRequest = brandsListForRequest.toString().substring(1, brandsListForRequest.toString().length-1).replaceAll(' ', '');
+                final String brandsStringForRequest = brandsListForRequest.toString().substring(1, brandsListForRequest.toString().length-1).replaceAll(', ', ',');
                 // final String sizesStringForRequest = sizesListForRequest.toString().substring(1, sizesListForRequest.toString().length-1).replaceAll(' ', '');
-                futureGlobalKey.currentState.updateGrid(HttpService().getPosts(brandsStringForRequest, minPriceController.text, maxPriceController.text));
+                productsGridGlobalKey.currentState.updateProductsGrid(HttpService().getPosts(brandsStringForRequest, minPriceController.text, maxPriceController.text));
               },
               child: Text("Применить"))
             

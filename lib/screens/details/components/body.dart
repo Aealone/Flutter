@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:shop_app/constants.dart';
 import '../../../http/request_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 // import 'add_to_cart.dart';
@@ -77,6 +78,20 @@ class Body extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: Text(product.newPrice.toString()),
+            ),
+          ),
+
+          // newprice
+          Container(
+            width: size.width,
+            // color: Colors.green,
+            child: Align(
+              alignment: Alignment.center,
+              child: new InkWell(
+                // splashColor: Colors.green,
+                child: new Text('Купить'),
+                  onTap: () => launch(product.mainLink),
+             ),
             ),
           ),
         ],

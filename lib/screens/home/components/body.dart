@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
             ],
           ),
           // SizedBox(height:20),
-          ProductsGrid(key: futureGlobalKey), //key: futureGlobalKey
+          ProductsGrid(key: productsGridGlobalKey), //key: futureGlobalKey
               // child: GridView.builder(
               //     itemCount: products.length,
               //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

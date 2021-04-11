@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/home/components/products_grid.dart';
 
 // import '../../../constants.dart';
 
@@ -7,15 +8,32 @@ import 'package:flutter/material.dart';
 bool isDownPrice = true;
 bool isDownSale = true;
 
-class SortPriceSale extends StatefulWidget {
-  @override
-  _SortPriceSaleState createState() => _SortPriceSaleState();
-}
+final GlobalKey<GridState> gridGlobalKey = new GlobalKey<GridState>();
 
-class _SortPriceSaleState extends State<SortPriceSale> {
-  // List<String> categories = ["Hand bag", "Jewellery", "Footwear", "Dresses"];
-  // int selectedIndex = 0;
 
+// class SortPriceSale extends StatefulWidget {
+//   @override
+//   _SortPriceSaleState createState() => _SortPriceSaleState();
+// }
+
+// class _SortPriceSaleState extends State<SortPriceSale> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 30,
+//       // color: Colors.deepOrange,
+//       child: Row(
+//         children: [
+//           Expanded(child: Text("Сортировка по:")),
+//           Expanded(child: priceSort()),
+//           Expanded(child: priceSale()),
+//         ],
+//       ),
+//     );
+//   }
+
+class SortPriceSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,53 +42,109 @@ class _SortPriceSaleState extends State<SortPriceSale> {
       child: Row(
         children: [
           Expanded(child: Text("Сортировка по:")),
-          Expanded(child: priceSort()),
-          Expanded(child: priceSale()),
+          Expanded(child: PriceofSort()),
+          Expanded(child: SaleofSort()),
         ],
       ),
     );
   }
+}
 
+class PriceofSort extends StatefulWidget {
+  @override
+  _PriceofSortState createState() => _PriceofSortState();
+}
 
-  Widget priceSort() {
+class _PriceofSortState extends State<PriceofSort> {
+  IconData myIcon;
 
+  void initState() {
+    myIcon = Icons.remove;
+    super.initState();
+  }
 
-    return InkWell(
-      onTap: () {
-        setState(() {
-          isDownPrice = !isDownPrice;
-
+  void sortAndUpdateIcon() {
+    setState(() {
+      if(isDownPrice) {
+        myIcon = Icons.keyboard_arrow_down;
+        productsList.sort((end, start) {
+          return start.newPrice.compareTo(end.newPrice);
         });
-      },
+      } else {
+        myIcon = Icons.keyboard_arrow_up;
+        productsList.sort((start, end) {
+          return start.newPrice.compareTo(end.newPrice);
+        });
+      }
+          
+      isDownPrice = !isDownPrice;
+      gridGlobalKey.currentState.updateGrid(productsList);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => sortAndUpdateIcon(),
+      // isDownPrice ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up
       child: Row(
         children: [
           Text("Цена"),
-          Icon(isDownPrice ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up)
+          Icon(myIcon),
         ]
       ),
     );
-  } 
+  }
+}
 
 
-  Widget priceSale() {
+class SaleofSort extends StatefulWidget {
+  @override
+  _SaleofSortState createState() => _SaleofSortState();
+}
+
+class _SaleofSortState extends State<SaleofSort> {
+  IconData myIcon;
 
 
+  void initState() {
+    myIcon = Icons.remove;
+    super.initState();
+  }
+
+  void sortAndUpdateIcon() {
+    setState(() {
+      if(isDownPrice) {
+        myIcon = Icons.keyboard_arrow_down;
+        productsList.sort((start, end) {
+            return (100/(start.oldPrice/start.newPrice)).compareTo(100/(end.oldPrice/end.newPrice));
+          });
+      } else {
+        myIcon = Icons.keyboard_arrow_up;
+        productsList.sort((end, start) {
+            return (100/(start.oldPrice/start.newPrice)).compareTo(100/(end.oldPrice/end.newPrice));
+          });
+      }
+          
+      isDownPrice = !isDownPrice;
+      gridGlobalKey.currentState.updateGrid(productsList);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          isDownSale = !isDownSale;
-
-        });
-      },
+      onTap: () => sortAndUpdateIcon(),
       child: Row(
         children: [
           Text("Скидка"),
-          Icon(isDownSale ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up)
+          Icon(myIcon)
         ]
       ),
     );
   } 
 }
+
 //   Widget buildCategory(int index) {
 //     return GestureDetector(
 //       onTap: () {

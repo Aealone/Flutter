@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:shop_app/drawer/components/drawer_info.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -33,9 +33,9 @@ class HttpService {
             (dynamic item) => item["brand"].toString(),
           )
           .toSet().toList();
+    
+      brandsList.sort();
 
-        // brandsList = brandsList.toSet().toList();
-      
         List<bool> listOfFalse = List.generate(brandsList.length, (index) => false);
         brandsUniq = Map.fromIterables(brandsList, listOfFalse);
         // print(brandsList);
