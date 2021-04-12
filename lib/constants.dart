@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-const kTextColor = Color(0xFF535353);
-const kTextLightColor = Color(0xFFACACAC);
 const mainColor = Colors.red;
-const brandFontSize = 17.0;
-const oldPriceFontSize = 16.0;
-const newPriceFontSize = 21.0;
-
-
 const kDefaultPadding = 10.0;
+const defaultFontSize = 15.0;
+const defaultTextColor = Colors.black;
+const lightBlackTextColor = Colors.black87;

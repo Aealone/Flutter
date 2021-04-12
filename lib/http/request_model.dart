@@ -21,7 +21,6 @@ class ProductInfo {
     @required this.oldPrice,
     @required this.newPrice,
     @required this.mainLink,
-  
   });
 
   factory ProductInfo.fromJson(Map<String, dynamic> json) {

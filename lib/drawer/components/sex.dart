@@ -1,42 +1,39 @@
 import 'package:flutter/material.dart';
-enum SingingCharacter { lafayette, jefferson }
+import 'package:discount_app/drawer/components/drawer_info.dart';
 
-/// This is the stateful widget that the main application instantiates.
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key key}) : super(key: key);
+class SexRadio extends StatefulWidget {
+  const SexRadio({Key key}) : super(key: key);
 
   @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  _SexRadioState createState() => _SexRadioState();
 }
 
-/// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  SingingCharacter _character = SingingCharacter.lafayette;
-
+class _SexRadioState extends State<SexRadio> {
+  
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         ListTile(
-          title: const Text('Lafayette'),
-          leading: Radio<SingingCharacter>(
-            value: SingingCharacter.lafayette,
-            groupValue: _character,
-            onChanged: (SingingCharacter value) {
+          title: const Text('Мужской'),
+          leading: Radio<bool>(
+            value: sex["male"],
+            groupValue: character,
+            onChanged: (value) {
               setState(() {
-                _character = value;
+                character = value;
               });
             },
           ),
         ),
         ListTile(
-          title: const Text('Thomas Jefferson'),
-          leading: Radio<SingingCharacter>(
-            value: SingingCharacter.jefferson,
-            groupValue: _character,
-            onChanged: (SingingCharacter value) {
+          title: const Text('Женский'),
+          leading: Radio<bool>(
+            value: sex["female"],
+            groupValue: character,
+            onChanged: (value) {
               setState(() {
-                _character = value;
+                character = value;
               });
             },
           ),

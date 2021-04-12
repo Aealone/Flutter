@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:discount_app/constants.dart';
 
 class LabeledCheckbox extends StatelessWidget {
   LabeledCheckbox({
@@ -21,6 +22,7 @@ class LabeledCheckbox extends StatelessWidget {
         children: <Widget>[
           Expanded(child: Text(label)),
           Checkbox(
+            activeColor: mainColor,
             value: values,
             onChanged: (bool newValue) {
               onChanged(newValue);

@@ -1,47 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home/components/products_grid.dart';
-
-// import '../../../constants.dart';
-
-// We need satefull widget for our categories
+import 'package:discount_app/screens/home/components/products_grid.dart';
+import 'package:discount_app/constants.dart';
 
 bool isDownPrice = true;
 bool isDownSale = true;
 
 final GlobalKey<GridState> gridGlobalKey = new GlobalKey<GridState>();
 
-
-// class SortPriceSale extends StatefulWidget {
-//   @override
-//   _SortPriceSaleState createState() => _SortPriceSaleState();
-// }
-
-// class _SortPriceSaleState extends State<SortPriceSale> {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 30,
-//       // color: Colors.deepOrange,
-//       child: Row(
-//         children: [
-//           Expanded(child: Text("Сортировка по:")),
-//           Expanded(child: priceSort()),
-//           Expanded(child: priceSale()),
-//         ],
-//       ),
-//     );
-//   }
-
 class SortPriceSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size mainSize = MediaQuery.of(context).size;
     return Container(
-      height: 30,
-      // color: Colors.deepOrange,
+      height: mainSize.height/20,
       child: Row(
         children: [
-          Expanded(child: Text("Сортировка по:")),
+          Expanded(child: Text("Сортировка по:", style: TextStyle(fontSize: defaultFontSize, color: defaultTextColor))),
           Expanded(child: PriceofSort()),
           Expanded(child: SaleofSort()),
         ],
@@ -86,10 +60,9 @@ class _PriceofSortState extends State<PriceofSort> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => sortAndUpdateIcon(),
-      // isDownPrice ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up
       child: Row(
         children: [
-          Text("Цена"),
+          Text("Цена", style: TextStyle(fontSize: defaultFontSize, color: defaultTextColor)),
           Icon(myIcon),
         ]
       ),
@@ -137,42 +110,10 @@ class _SaleofSortState extends State<SaleofSort> {
       onTap: () => sortAndUpdateIcon(),
       child: Row(
         children: [
-          Text("Скидка"),
+          Text("Скидка", style: TextStyle(fontSize: defaultFontSize, color: defaultTextColor)),
           Icon(myIcon)
         ]
       ),
     );
   } 
 }
-
-//   Widget buildCategory(int index) {
-//     return GestureDetector(
-//       onTap: () {
-//         setState(() {
-//           selectedIndex = index;
-//         });
-//       },
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: <Widget>[
-//             Text(
-//               categories[index],
-//               style: TextStyle(
-//                 fontWeight: FontWeight.bold,
-//                 color: selectedIndex == index ? kTextColor : kTextLightColor,
-//               ),
-//             ),
-//             Container(
-//               margin: EdgeInsets.only(top: kDefaultPadding / 4), //top padding 5
-//               height: 2,
-//               width: 30,
-//               color: selectedIndex == index ? Colors.black : Colors.transparent,
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

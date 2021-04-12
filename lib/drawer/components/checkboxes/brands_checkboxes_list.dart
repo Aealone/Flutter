@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/drawer/components/drawer_info.dart';
-import 'package:shop_app/drawer/components/checkboxes/checkbox_model.dart';
-// import 'package:shop_app/http/http_service.dart';
+import 'package:discount_app/drawer/components/drawer_info.dart';
+import 'package:discount_app/drawer/components/checkboxes/checkbox_model.dart';
 
 final List<String> brandsListForRequest = [];
 
@@ -11,16 +10,13 @@ class BrandsCheckBoxList extends StatefulWidget {
 }
 
 class _BrandsCheckBoxListState extends State<BrandsCheckBoxList> {
-
-
-
   @override
   Widget build(BuildContext context) {
-    // print(brandsList);
+    Size mainSize = MediaQuery.of(context).size;
     return  Column(
       children: [
         SizedBox(
-          height: 300,
+          height: mainSize.height/2.5,
               child: ListView(
               children: brandsUniq.keys.map((String key) {
                 return new LabeledCheckbox(
@@ -28,7 +24,6 @@ class _BrandsCheckBoxListState extends State<BrandsCheckBoxList> {
                   values: brandsUniq[key],
                   onChanged: (bool value) {
                     setState(() {
-                      // await HttpService().getPosts("adidas", "1000", "3000");
                       if (value == true) {
                         brandsListForRequest.add(key);
                       } else {

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 // import 'package:http/http.dart' as http;
-import 'package:shop_app/http/http_service.dart';
-import 'package:shop_app/models/product_card.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
+import 'package:discount_app/http/http_service.dart';
+import 'package:discount_app/screens/home/components/product_card.dart';
+import 'package:discount_app/constants.dart';
+import 'package:discount_app/screens/details/details_screen.dart';
 
 // import 'package:shop_app/screens/home/components/products_grid.dart';
 
 
-import 'package:shop_app/http/request_model.dart';
+import 'package:discount_app/http/request_model.dart';
 // import 'package:shop_app/screens/home/components/products_grid.dart';
 
 final GlobalKey<ProductsGridState> futureGlobalKey = new GlobalKey<ProductsGridState>();
