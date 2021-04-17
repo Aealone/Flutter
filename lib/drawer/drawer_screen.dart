@@ -109,6 +109,7 @@ Drawer buildDrawer() {
               color: mainColor,
               onPressed: () {
                 final String brandsStringForRequest = brandsListForRequest.toString().substring(1, brandsListForRequest.toString().length-1).replaceAll(', ', ',');
+                // final String sizesStringForRequest = sizesListForRequest.toString().substring(1, sizesListForRequest.toString().length-1).replaceAll(', ', ',');
                 productsGridGlobalKey.currentState.updateProductsGrid(brandsStringForRequest, minPriceController.text, maxPriceController.text);
               },
               child: Text("Применить", style: TextStyle(color: Colors.white))

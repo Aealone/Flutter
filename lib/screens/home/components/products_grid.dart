@@ -20,7 +20,7 @@ class ProductsGridState extends State<ProductsGrid> {
   Future<List<ProductInfo>> myfuture;
 
   void initState() {
-    myfuture = HttpService().getPosts("PUMA", "4000", "4400");
+    myfuture = HttpService().getPosts("", "", "");
     super.initState();
   }
 
